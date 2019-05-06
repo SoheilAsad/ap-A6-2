@@ -2,10 +2,7 @@
 
 #include <string>
 
-void add_directory(int id, std::string title, int parent_id)
-{
-    
-}
+void add_directory(int id, std::string title, int parent_id);
 
 void add_file(int id, std::string title, std::string content, int parent_id);
 

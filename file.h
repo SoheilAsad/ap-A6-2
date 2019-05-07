@@ -4,14 +4,14 @@
 #include <string>
 #include <vector>
 
-#include "file_system.h"
+#include "directory.h"
 
-class File : public FileSystem
+class File : public Directory
 {
 public:
     File(int _id, std::string _title, std::string _content, int _parent_id);
-    virtual void print_info();
-private:
+   // virtual void print_info();
+protected:
     std::string content;
 };
 

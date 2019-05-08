@@ -10,6 +10,7 @@ class Link : public Directory
 {
 public:
     Link(int _id, std::string _title, int _element_id, int _parent_id);
+    virtual std::string get_type();
   //  virtual void print_info();
 protected:
     int element_id ;

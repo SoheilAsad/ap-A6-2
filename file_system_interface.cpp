@@ -2,53 +2,40 @@
 
 #include "file_system_interface.h"
 #include "file_system.h"
-#include "directory.h"
+#include "exception.h"
 
 using namespace std;
 
 FileSystemInterface::FileSystemInterface()
 {
-    file_system = new FileSystem() ;
+        file_system = new FileSystem() ;
 }
 
 void FileSystemInterface::add_directory(int id, string title, int parent_id)
 {
-    if(file_system->is_id_repetition(int id))
-        //throw IdAlreadyExist();
-    Directory* parent_directory = file_system->fine_parent_directory(int parent_id);
-    if(parent_directory == NULL)
-        //throw BadParentId();
-    if(parent_directory->is_title_repetition(string title))
-        //throw BadTitle();
-    file_system->add_directory_to_file_system(int id, string title, int parent_id);
-    parent_directory->add_directory_to_parent_dir(int id, string title, int parent_id);
+    try{
+        file_system->add_directory(id, title, parent_id);
+    }catch(Exception ex){
+        ex.what();
+    }
 }
 
 void FileSystemInterface::add_file(int id, string title, string content, int parent_id)
 {
-    if(file_system->is_id_repetition(int id))
-        //throw IdAlreadyExist();
-    Directory* parent_directory = file_system->fine_parent_directory(int parent_id);
-    if(parent_directory == NULL)
-        //throw BadParentId();
-    if(parent_directory->is_title_repetition(string title))
-        //throw BadTitle();
-    parent_directory->add_file_to_parent_dir(int id, string title, string content, int parent_id);
-    
+    try{
+        file_system->add_file(id, title, content, parent_id);
+    }catch(Exception ex){
+        ex.what();
+    }
 }
 
 void FileSystemInterface::add_link(int id, string title, int element_id, int parent_id)
 {
-    if(file_system->is_id_repetition(int id))
-        //throw IdAlreadyExist();
-    Directory* parent_directory = file_system->fine_parent_directory(int parent_id);
-    if(parent_directory == NULL)
-        //throw BadParentId();
-    if(parent_directory->is_title_repetition(string title))
-        //throw BadTitle();
-    if(parent_directory->is_element_id_invalid(int element_id))
-        //throw BadLinkedElement();
-    parent_directory->add_link_to_parent_dir(int id, string title, int element_id, int parent_id);
+    try{
+        file_system->add_link(id, title, element_id, parent_id);
+    }catch(Exception ex){
+        ex.what();
+    }
 }
 /*
 void FileSystemInterface::view(int id)
